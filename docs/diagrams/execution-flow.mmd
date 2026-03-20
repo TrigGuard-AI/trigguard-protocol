@@ -1,0 +1,40 @@
+%% TrigGuard Execution Flow
+%% Canonical: surface, action, context → evaluation → PERMIT/BLOCK/SILENCE → execution or no execution → receipt when applicable
+%% Outcomes: PERMIT | BLOCK | SILENCE only. No probabilistic or assistant-like semantics.
+
+flowchart LR
+    subgraph request["Request"]
+        A[Client / System]
+    end
+
+    subgraph trigguard["TrigGuard"]
+        B[Authoritative evaluation layer]
+        C[Evaluate conditions\n deterministically]
+    end
+
+    subgraph decision["Decision"]
+        D[PERMIT]
+        E[BLOCK]
+        F[SILENCE]
+    end
+
+    subgraph outcome["Outcome"]
+        G[Execution]
+        H[No execution]
+    end
+
+    subgraph receipt["Receipt"]
+        I[Receipt issued\n when applicable]
+    end
+
+    A -->|surface, action, context| B
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    D --> G
+    D --> I
+    E --> H
+    E -.->|audit| I
+    F --> H
+    G --> I

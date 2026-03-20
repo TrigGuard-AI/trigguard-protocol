@@ -1,0 +1,23 @@
+# Spec + SDK schema byte-match; conformance fixture validation.
+name: protocol-spec-sync
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check-spec-sync:
+    name: check-spec-sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Check protocol spec sync
+        run: bash scripts/check_protocol_sync.sh
+      - name: Validate conformance fixtures
+        run: node scripts/validate_conformance.js

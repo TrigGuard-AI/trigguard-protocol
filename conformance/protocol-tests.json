@@ -1,0 +1,27 @@
+{
+  "version": "0.1",
+  "description": "Conformance vectors for canonical decision records (shape + vocabulary). Extend as the protocol gains fixtures.",
+  "cases": [
+    {
+      "id": "permit-basic",
+      "decision": "PERMIT",
+      "enforcement": "EXECUTED",
+      "reason_code": "NO_POLICY_VIOLATION",
+      "timestamp": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "deny-basic",
+      "decision": "DENY",
+      "enforcement": "BLOCKED",
+      "reason_code": "HIGH_RISK_SPEND",
+      "timestamp": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "silence-basic",
+      "decision": "SILENCE",
+      "enforcement": "BLOCKED",
+      "reason_code": "MISSING_AUTHORIZATION",
+      "timestamp": "2026-01-01T00:00:00.000Z"
+    }
+  ]
+}

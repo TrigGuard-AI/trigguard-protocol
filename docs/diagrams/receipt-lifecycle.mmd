@@ -1,0 +1,30 @@
+%% TrigGuard Receipt Lifecycle
+%% Request → evaluation → receipt creation → signature → storage/transport → verification
+
+flowchart LR
+    subgraph creation["Creation"]
+        A[Request evaluated]
+        B[Decision: PERMIT / BLOCK]
+        C[Receipt created]
+        D[Canonical payload\nreceiptHash]
+        E[Ed25519 signature]
+    end
+
+    subgraph transport["Storage / transport"]
+        F[Receipt stored or returned]
+    end
+
+    subgraph verification["Verification"]
+        G[Key discovery]
+        H[Signature verification]
+        I[Verified result]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I

@@ -1,0 +1,40 @@
+{
+  "name": "@trigguard/protocol",
+  "version": "0.1.2",
+  "description": "Shared TypeScript types and JSON contract snapshots for TrigGuard authorization decisions and records.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./schema": "./dist/schema.json",
+    "./contract": "./dist/contracts/decision_contract.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "sync-contract": "node scripts/sync-contract.mjs",
+    "build": "npm run sync-contract && tsc && node scripts/copy-assets.mjs",
+    "prepare": "npm run build",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "trigguard",
+    "protocol",
+    "governance"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrigGuard-AI/trigguard-protocol.git"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.3"
+  }
+}

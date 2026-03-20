@@ -1,0 +1,9 @@
+{
+  "decision": ["PERMIT", "DENY"],
+  "reasonCode": [
+    "NO_POLICY_VIOLATION",
+    "HIGH_RISK_SPEND",
+    "RSD_AUTOMATION_CONFLICT",
+    "NO_MATCHING_POLICY"
+  ]
+}

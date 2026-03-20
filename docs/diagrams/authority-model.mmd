@@ -1,0 +1,32 @@
+%% TrigGuard Authority Model
+%% Website explains; API exposes; protocol defines; registry enforces; TrigGuard evaluates; verification validates; adapters translate but do not decide.
+
+flowchart TB
+    subgraph communication["Communication"]
+        W[Website / docs explain protocol]
+        API[API exposes protocol]
+    end
+
+    subgraph definition["Definition"]
+        P[Protocol defines\nsurface, action, context\nPERMIT/BLOCK/SILENCE]
+        R[Registry enforces\nvalid surfaces]
+    end
+
+    subgraph authority["Authority"]
+        T[TrigGuard evaluates\nsingle authoritative layer]
+    end
+
+    subgraph translation["Translation only"]
+        AD[Adapters translate\ntool/args etc.\n do not decide]
+    end
+
+    subgraph validation["Validation"]
+        V[Verification validates\nreceipts\n does not authorize]
+    end
+
+    W --> P
+    API --> P
+    P --> R
+    R --> T
+    AD -->|canonical form| T
+    T --> V

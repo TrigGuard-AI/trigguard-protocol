@@ -1,0 +1,30 @@
+%% TrigGuard Verification Flow
+%% Receipt → key discovery → signature verification → field validation → verified result
+%% Offline-capable; no callback to TrigGuard required.
+
+flowchart LR
+    subgraph input["Input"]
+        A[Receipt]
+    end
+
+    subgraph keys["Key discovery"]
+        B[GET /.well-known/trigguard/keys.json]
+        C[Select key by authorityKeyId]
+    end
+
+    subgraph verify["Verification"]
+        D[Verify Ed25519 signature\n over receiptHash]
+        E[Validate fields]
+    end
+
+    subgraph result["Result"]
+        F[Verified]
+        G[Invalid]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    E --> G
