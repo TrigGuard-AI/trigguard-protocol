@@ -2,6 +2,8 @@
 
 **Protocol • Deterministic Execution Governance for AI Systems**
 
+> **TrigGuard Protocol** — deterministic execution governance **contract**, **schemas**, and **conformance tests**.
+
 Public **specification**, **conformance** vectors, and the **[`@trigguard/protocol`](https://www.npmjs.com/package/@trigguard/protocol)** TypeScript package.
 
 | Area | Contents |
@@ -16,10 +18,22 @@ Public **specification**, **conformance** vectors, and the **[`@trigguard/protoc
 ## Quick links
 
 - Execution protocol: [`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/TRIGGUARD_EXECUTION_PROTOCOL.md)
-- Security: [`SECURITY.md`](SECURITY.md)
-- Architecture map: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 - Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
+### Security & review (read these first)
+
+| File | Purpose |
+|------|---------|
+| [`SECURITY.md`](SECURITY.md) | **Responsible disclosure** — how to report vulnerabilities privately. |
+| [`THREAT_MODEL.md`](THREAT_MODEL.md) | **Assumptions** — assets, boundaries, what this repo does / does not guarantee. |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | **How the protocol layer fits** — spec, docs, SDK, CI. |
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT — see [`LICENSE`](LICENSE). *(Many protocol projects use Apache-2.0; changing license is an org/legal decision.)*
+
+## Repository description (GitHub)
+
+Use this one-line description in **Settings**:
+
+`TrigGuard Protocol — deterministic execution governance contract, schemas, and conformance tests.`

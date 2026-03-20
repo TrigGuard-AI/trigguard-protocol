@@ -1,42 +1,49 @@
-# TrigGuard — architecture at a glance
+# TrigGuard Protocol — architecture
 
-This file is the **entry map** for how execution governance fits together. Deep dives live under [`docs/`](docs/).
+This repository holds the **public protocol layer**: **spec** (JSON Schema), **normative docs** (`docs/`), **conformance** vectors, and the **`@trigguard/protocol`** TypeScript package.
 
-## What TrigGuard is
-
-An **execution governance protocol**: systems request authorization before **irreversible** actions, receive a deterministic **PERMIT / DENY / SILENCE** decision, and (when permitted) obtain **verifiable receipts**. The engine is fail-closed: missing authority means no execution path.
-
-## Core concepts (one minute)
+## Core concepts
 
 | Concept | Meaning |
 |--------|---------|
-| **Execution gate** | Irreversible work does not run unless a valid **authorization capability** (token / receipt path) is presented. Surfaces go through a **mandatory gateway** — see [MANDATORY_EXECUTION_GATEWAY](docs/architecture/MANDATORY_EXECUTION_GATEWAY.md). |
-| **Policy evaluation** | A **single authority engine** evaluates policy and signals; adapters do not emit competing execution decisions. See [TRIGGUARD_AUTHORITY_MODEL](docs/protocol/TRIGGUARD_AUTHORITY_MODEL.md). |
-| **Deterministic permit / deny** | Decisions are **replayable** and **hash-stable** for the same inputs; binary outcomes avoid ambiguous “maybe executed” states for governed surfaces. |
-| **Protocol authority** | The component that may **emit** executable decisions and signed receipts; verification can be **offline** with published keys. Hosted authority is one deployment shape; the **rules** live in the protocol docs. |
+| **Execution gate** | Irreversible work must not proceed without a valid **authorization path** (per execution protocol; enforced in product gateways). |
+| **Policy evaluation** | Policy and signals feed a **single authority** for executable decisions (`PERMIT` / `DENY` / `SILENCE` vocabulary in the decision record). |
+| **Deterministic outcomes** | Same inputs → same decision semantics; **no** ambiguous “maybe executed” for governed outcomes. |
+| **Authority & receipts** | When permitted, **verifiable** artifacts bind decisions to requests (see receipt and verification docs under `docs/`). |
 
-**Org-level context** (which GitHub repos are public vs private): [ORG_REPOSITORY_TOPOLOGY](docs/governance/ORG_REPOSITORY_TOPOLOGY.md).
+## Protocol flow (logical)
 
-## Read these first
+```
+Client / agent
+    → describes request (surface, context, signals)
+    → gateway / authority evaluates policy
+    → decision record (PERMIT | DENY | SILENCE) + enforcement
+    → optional signed receipt for audit / offline verification
+```
 
-| Topic | Document |
-|--------|----------|
-| **Spec hub + JSON Schema** | [`spec/TG_PROTOCOL.md`](spec/TG_PROTOCOL.md), [`spec/decision_contract.schema.json`](spec/decision_contract.schema.json) |
-| **Conformance vectors** | [`conformance/protocol-tests.json`](conformance/protocol-tests.json) |
-| **Execution protocol** (normative) | [`docs/protocol/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/protocol/TRIGGUARD_EXECUTION_PROTOCOL.md) |
-| **Mandatory gateway** (no token ⇒ no execution) | [`docs/architecture/MANDATORY_EXECUTION_GATEWAY.md`](docs/architecture/MANDATORY_EXECUTION_GATEWAY.md) |
-| **Authority & signals** (who may decide) | [`docs/protocol/TRIGGUARD_AUTHORITY_MODEL.md`](docs/protocol/TRIGGUARD_AUTHORITY_MODEL.md) |
-| **Kernel boundary** (core vs adapters) | [`docs/architecture/KERNEL_BOUNDARY.md`](docs/architecture/KERNEL_BOUNDARY.md) |
-| **System model** (components) | [`docs/architecture/SYSTEM_MODEL.md`](docs/architecture/SYSTEM_MODEL.md) |
-| **Threat / trust** (reviewer-oriented) | [`docs/security/SECURITY_OVERVIEW.md`](docs/security/SECURITY_OVERVIEW.md), [`docs/security/THREAT_MODEL_v1.md`](docs/security/THREAT_MODEL_v1.md) |
+**Normative detail:** [`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/TRIGGUARD_EXECUTION_PROTOCOL.md).
 
-## Runnable orientation
+## Repository layout
 
-- **Gateway demo (Node):** [`examples/execution-gateway-demo/`](examples/execution-gateway-demo/)
-- **Basic AI gate:** [`examples/basic-ai-gate/`](examples/basic-ai-gate/)
+| Path | Role |
+|------|------|
+| [`spec/`](spec/) | JSON Schema + [`TG_PROTOCOL.md`](spec/TG_PROTOCOL.md) |
+| [`docs/`](docs/) | Execution protocol, receipts, surfaces, API schema |
+| [`conformance/`](conformance/) | [`protocol-tests.json`](conformance/protocol-tests.json) |
+| [`implementations/typescript/`](implementations/typescript/) | npm `@trigguard/protocol` |
+| [`scripts/`](scripts/) | Spec sync + conformance checks (CI) |
 
-## Governance & CI
+## Deterministic guarantees (protocol artifacts)
 
-- **Merge process:** [`CONTRIBUTING.md`](CONTRIBUTING.md)
-- **Security disclosure:** [`SECURITY.md`](SECURITY.md)
-- **CI control plane (what gates mean):** [`docs/governance/CI_CONTROL_PLANE_V1.md`](docs/governance/CI_CONTROL_PLANE_V1.md)
+- Canonical **decision record** fields: `decision`, `enforcement`, `reason_code`, `timestamp` (see schema).
+- **CI** enforces **byte match** between `spec/decision_contract.schema.json` and the SDK `schema.json`.
+
+## Runtime product
+
+The **hosting runtime** (servers, apps, CI integrations) lives in **[TrigGuard-AI/TrigGuard](https://github.com/TrigGuard-AI/TrigGuard)** (private). This repo stays **auditable** and **implementation-agnostic**.
+
+## Security entry points
+
+- [`SECURITY.md`](SECURITY.md) — disclosure.  
+- [`THREAT_MODEL.md`](THREAT_MODEL.md) — assumptions and boundaries.  
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose changes.
