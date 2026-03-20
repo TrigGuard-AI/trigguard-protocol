@@ -1,0 +1,14 @@
+# Dependabot — Scorecard Dependency-Update-Tool + supply-chain hygiene.
+# Enable: Settings → Security → Dependency graph, Dependabot alerts, Dependabot security updates.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/implementations/typescript"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
