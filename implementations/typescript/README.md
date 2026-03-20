@@ -1,18 +1,35 @@
-# TrigGuard Protocol
+# `@trigguard/protocol` (TypeScript SDK)
 
 [![npm version](https://img.shields.io/npm/v/@trigguard/protocol)](https://www.npmjs.com/package/@trigguard/protocol)
 
-Canonical protocol definitions for TrigGuard governance decisions: vocabulary (`PERMIT`, `DENY`, `SILENCE`), enforcement semantics, and the `DecisionRecord` shape used across products and tooling.
+**Reference implementation** for the TrigGuard protocol in TypeScript: vocabulary (`PERMIT`, `DENY`, `SILENCE`), enforcement semantics, and the `DecisionRecord` shape, plus JSON snapshots aligned with [`core/contracts/decision_contract.json`](../../core/contracts/decision_contract.json).
 
-**Package name:** `@trigguard/protocol` — types and contract snapshots; runtime evaluation and policy engines live in other packages and services. Integrations **conform** to this contract.
+**Language-agnostic specification:** [`spec/TG_PROTOCOL.md`](../../spec/TG_PROTOCOL.md) — this npm package is an SDK, not the full protocol.
 
-## Install
+**Runtime evaluation and policy engines** live in other packages and services; integrations **conform** to the spec.
+
+## Quick start
 
 ```bash
 npm install @trigguard/protocol
 ```
 
-Published on the public registry under the `@trigguard` scope. For release process, see `docs/release/PROTOCOL_RELEASE.md` in the monorepo.
+```typescript
+import { DECISION, ENFORCEMENT, type DecisionRecord } from "@trigguard/protocol";
+
+const record: DecisionRecord = {
+  decision: DECISION.PERMIT,
+  enforcement: ENFORCEMENT.EXECUTED,
+  reason_code: "NO_POLICY_VIOLATION",
+  timestamp: new Date().toISOString(),
+};
+```
+
+There is **no** `evaluate()` or `validateDecision()` in this package — only **types and canonical constants** so your code matches [`spec/TG_PROTOCOL.md`](../../spec/TG_PROTOCOL.md). For JSON Schema and contract JSON via subpaths, see [Subpath exports](#subpath-exports-json).
+
+## Install and paths
+
+Published on the public registry under the `@trigguard` scope. For release process, see [`docs/release/PROTOCOL_RELEASE.md`](https://github.com/TrigGuard-AI/TrigGuard/blob/main/docs/release/PROTOCOL_RELEASE.md) in the [TrigGuard monorepo](https://github.com/TrigGuard-AI/TrigGuard) (authoritative).
 
 **Develop inside the repo** (no registry), use a path or workspace:
 
@@ -20,7 +37,9 @@ Published on the public registry under the `@trigguard` scope. For release proce
 "@trigguard/protocol": "file:implementations/typescript"
 ```
 
-or install from a Git URL / workspace as documented in the main [TrigGuard repository](https://github.com/TrigGuard-AI/TrigGuard).
+(From a package at the repository root. From `packages/*`, use `file:../../implementations/typescript`.)
+
+Or install from a Git URL / workspace as documented in the main [TrigGuard repository](https://github.com/TrigGuard-AI/TrigGuard).
 
 ## Decision model
 
@@ -32,27 +51,7 @@ or install from a Git URL / workspace as documented in the main [TrigGuard repos
 
 Policy-only layers may restrict emitted decisions to **PERMIT** / **DENY**; full protocol surfaces also use **SILENCE** where applicable.
 
-## Example import (TypeScript)
-
-```typescript
-import {
-  type Decision,
-  type DecisionRecord,
-  DECISION,
-  DECISIONS,
-  SILENCE_DEFINITION,
-} from "@trigguard/protocol";
-
-const d: Decision = "PERMIT";
-const record: DecisionRecord = {
-  decision: DECISION.PERMIT,
-  enforcement: "EXECUTED",
-  reason_code: "NO_POLICY_VIOLATION",
-  timestamp: new Date().toISOString(),
-};
-```
-
-There is **no** `evaluate()` in this package — evaluation lives in TrigGuard services and kernels. This package supplies **types and canonical constants** so callers and SDKs share one contract.
+Other useful exports: `type Decision`, `DECISIONS`, `SILENCE_DEFINITION`, `REASON_CODES`, `decisionContract`.
 
 ## Subpath exports (JSON)
 
@@ -76,12 +75,12 @@ npm run build
 
 ## Repository
 
-Canonical source: [github.com/TrigGuard-AI/TrigGuard](https://github.com/TrigGuard-AI/TrigGuard) — `implementations/typescript/` (spec: [`spec/`](../spec/)).
+Canonical TypeScript SDK in this repo: [`implementations/typescript/`](.) (spec: [`spec/`](../../spec/)). The [TrigGuard monorepo](https://github.com/TrigGuard-AI/TrigGuard) carries the same tree until cutover — keep them in sync per [`PROTOCOL_REPO_EXTRACTION.md`](https://github.com/TrigGuard-AI/TrigGuard/blob/main/docs/governance/PROTOCOL_REPO_EXTRACTION.md).
 
 For installation paths and release tagging, see:
 
-- `docs/developers/INSTALL_PROTOCOL.md`
-- `docs/release/PROTOCOL_RELEASE.md`
+- [`docs/developers/INSTALL_PROTOCOL.md`](https://github.com/TrigGuard-AI/TrigGuard/blob/main/docs/developers/INSTALL_PROTOCOL.md)
+- [`docs/release/PROTOCOL_RELEASE.md`](https://github.com/TrigGuard-AI/TrigGuard/blob/main/docs/release/PROTOCOL_RELEASE.md)
 
 ## Legacy note (snapshot)
 
