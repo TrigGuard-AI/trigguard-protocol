@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Conformance vectors for canonical decision records (shape + vocabulary). Extend as the protocol gains fixtures.",
   "cases": [
     {

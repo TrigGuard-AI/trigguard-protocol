@@ -15,6 +15,12 @@ Public **specification**, **conformance** vectors, and the **[`@trigguard/protoc
 
 **Runtime product** (private): [TrigGuard-AI/TrigGuard](https://github.com/TrigGuard-AI/TrigGuard).
 
+## Releases (versioned protocol surface)
+
+**Current:** [**v0.1.0**](https://github.com/TrigGuard-AI/trigguard-protocol/releases/tag/v0.1.0) — initial public protocol release. The **protocol version** in [`spec/TG_PROTOCOL.md`](spec/TG_PROTOCOL.md) matches this tag.
+
+[All releases](https://github.com/TrigGuard-AI/trigguard-protocol/releases)
+
 ## Quick links
 
 - Execution protocol: [`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/TRIGGUARD_EXECUTION_PROTOCOL.md)

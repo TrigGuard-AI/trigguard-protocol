@@ -2,10 +2,16 @@
 
 | Item | Value |
 |------|--------|
+| **Protocol version** | **v0.1.0** — must match [git tag `v0.1.0`](https://github.com/TrigGuard-AI/trigguard-protocol/releases/tag/v0.1.0) on this repo ([Releases](https://github.com/TrigGuard-AI/trigguard-protocol/releases)). |
 | **Spec artifact** | [`decision_contract.schema.json`](decision_contract.schema.json) |
 | **Conformance** | [`conformance/protocol-tests.json`](../conformance/protocol-tests.json) |
 | **TypeScript SDK** | [`implementations/typescript`](../implementations/typescript) (`@trigguard/protocol` on npm) |
-| **Public home (bootstrap)** | [github.com/TrigGuard-AI/trigguard-protocol](https://github.com/TrigGuard-AI/trigguard-protocol) — target for extracted spec + docs; see [`docs/governance/PROTOCOL_REPO_EXTRACTION.md`](../docs/governance/PROTOCOL_REPO_EXTRACTION.md). |
+| **Runtime monorepo** | [TrigGuard-AI/TrigGuard](https://github.com/TrigGuard-AI/TrigGuard) (private product) — extraction/cutover notes: [PROTOCOL_REPO_EXTRACTION.md](https://github.com/TrigGuard-AI/TrigGuard/blob/main/docs/governance/PROTOCOL_REPO_EXTRACTION.md). |
+
+## Protocol versioning
+
+- **This document** and **`conformance/protocol-tests.json`** use the **same** semver as **GitHub Releases** here (e.g. **v0.1.0**).
+- Breaking changes → **major** bump; additive schema/docs → **minor**; fixes → **patch**.
 
 ## Goals
 
@@ -15,8 +21,8 @@
 
 ## Canonical prose
 
-All detailed rules, execution flow, and receipt semantics: **[`docs/protocol/TRIGGUARD_EXECUTION_PROTOCOL.md`](../docs/TRIGGUARD_EXECUTION_PROTOCOL.md)**.
+All detailed rules, execution flow, and receipt semantics: **[`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](../docs/TRIGGUARD_EXECUTION_PROTOCOL.md)**.
 
 ## Implementation constitution
 
-[`TRIGGUARD_IMPLEMENTATION_MASTER_PLAN.md`](../TRIGGUARD_IMPLEMENTATION_MASTER_PLAN.md)
+[`TRIGGUARD_IMPLEMENTATION_MASTER_PLAN.md`](https://github.com/TrigGuard-AI/TrigGuard/blob/main/TRIGGUARD_IMPLEMENTATION_MASTER_PLAN.md) (TrigGuard monorepo)
