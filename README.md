@@ -13,6 +13,10 @@ Public **specification**, **conformance** vectors, and the **[`@trigguard/protoc
 | [`conformance/`](conformance/) | [`protocol-tests.json`](conformance/protocol-tests.json) |
 | [`implementations/typescript/`](implementations/typescript/) | npm package `@trigguard/protocol` |
 
+## Security Model
+
+The protocol explicitly defines **guarantees**, **assumptions**, **threat boundaries**, and **non-goals** for anyone integrating or reviewing the contract. Read [`SECURITY_CONSIDERATIONS.md`](SECURITY_CONSIDERATIONS.md) first for the normative security framing; use [`THREAT_MODEL.md`](THREAT_MODEL.md) for protocol-layer assets and trust boundaries, and [`SECURITY.md`](SECURITY.md) for vulnerability reporting.
+
 ### Quick start: `@trigguard/protocol` (npm)
 
 Install from the public registry, then use the canonical decision vocabulary and `DecisionRecord` shape (no evaluator here — that lives in [TrigGuard](https://github.com/TrigGuard-AI/TrigGuard) services; this package keeps types and constants aligned with the spec):
@@ -44,6 +48,7 @@ More examples, subpath exports (`/schema`, `/contract`), and path installs: [`im
 
 ## Quick links
 
+- Security considerations (guarantees, scope, non-goals): [`SECURITY_CONSIDERATIONS.md`](SECURITY_CONSIDERATIONS.md)
 - Execution protocol: [`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/TRIGGUARD_EXECUTION_PROTOCOL.md)
 - Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
@@ -51,6 +56,7 @@ More examples, subpath exports (`/schema`, `/contract`), and path installs: [`im
 
 | File | Purpose |
 |------|---------|
+| [`SECURITY_CONSIDERATIONS.md`](SECURITY_CONSIDERATIONS.md) | **Guarantees, assumptions, scope, non-goals** — protocol-grade security framing and verification expectations. |
 | [`SECURITY.md`](SECURITY.md) | **Responsible disclosure** — how to report vulnerabilities privately. |
 | [`THREAT_MODEL.md`](THREAT_MODEL.md) | **Assumptions** — assets, boundaries, what this repo does / does not guarantee. |
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | **How the protocol layer fits** — spec, docs, SDK, CI. |
