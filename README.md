@@ -17,6 +17,22 @@ Public **specification**, **conformance** vectors, and the **[`@trigguard/protoc
 
 The protocol explicitly defines **guarantees**, **assumptions**, **threat boundaries**, and **non-goals** for anyone integrating or reviewing the contract. Read [`SECURITY_CONSIDERATIONS.md`](SECURITY_CONSIDERATIONS.md) first for the normative security framing; use [`THREAT_MODEL.md`](THREAT_MODEL.md) for protocol-layer assets and trust boundaries, and [`SECURITY.md`](SECURITY.md) for vulnerability reporting.
 
+## Specification and Reference Alignment
+
+**trigguard-protocol** (this repository) is the **canonical contract**: schemas, normative prose, conformance artifacts, and versioned fingerprints.
+
+[**trigguard-core-reference**](https://github.com/TrigGuard-AI/trigguard-core-reference) demonstrates **expected protocol behavior** for integrators and reviewers; it is guidance, not a substitute for the specification.
+
+**Runtime and hosted implementations** execute the protocol under deployment-specific constraints; they **conform** to the contract but **do not redefine** it.
+
+| Artifact | Role | Authority |
+|----------|------|-----------|
+| trigguard-protocol | Normative specification | Canonical |
+| trigguard-core-reference | Reference behavior | Guidance / conformance aid |
+| Hosted/runtime implementations | Execution of the protocol | Non-normative implementation |
+
+If implementation behavior and the protocol diverge, **the protocol is authoritative**.
+
 ### Quick start: `@trigguard/protocol` (npm)
 
 Install from the public registry, then use the canonical decision vocabulary and `DecisionRecord` shape (no evaluator here — that lives in [TrigGuard](https://github.com/TrigGuard-AI/TrigGuard) services; this package keeps types and constants aligned with the spec):
@@ -49,6 +65,7 @@ More examples, subpath exports (`/schema`, `/contract`), and path installs: [`im
 ## Quick links
 
 - Security considerations (guarantees, scope, non-goals): [`SECURITY_CONSIDERATIONS.md`](SECURITY_CONSIDERATIONS.md)
+- Reference implementation (expected behavior, non-normative): [TrigGuard-AI/trigguard-core-reference](https://github.com/TrigGuard-AI/trigguard-core-reference)
 - Execution protocol: [`docs/TRIGGUARD_EXECUTION_PROTOCOL.md`](docs/TRIGGUARD_EXECUTION_PROTOCOL.md)
 - Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
@@ -106,8 +123,8 @@ Structured records describing protocol evaluation steps and outcomes.
 
 ## Repository Map
 
-trigguard-protocol → canonical protocol specification  
-trigguard-core-reference → reference implementation  
+trigguard-protocol → canonical protocol specification (this repo; see [Specification and Reference Alignment](#specification-and-reference-alignment) above)  
+trigguard-core-reference → [reference implementation](https://github.com/TrigGuard-AI/trigguard-core-reference) (guidance; protocol remains authoritative)  
 trigguard-js → SDK surfaces  
 cloud → hosted enforcement layer  
 docs → explanatory documentation  
