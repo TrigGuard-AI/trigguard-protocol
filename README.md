@@ -64,3 +64,46 @@ MIT — see [`LICENSE`](LICENSE). *(Many protocol projects use Apache-2.0; chang
 Use this one-line description in **Settings**:
 
 `TrigGuard Protocol — deterministic execution governance contract, schemas, and conformance tests.`
+
+
+## Role in the TrigGuard Ecosystem
+
+This repository defines the canonical TrigGuard protocol specification,
+including protocol fingerprints, conformance artifacts, and versioned
+execution rules.
+
+All implementations must conform to this protocol.
+
+## Core Protocol Concepts
+
+Execution Surface  
+The boundary where an AI system transitions from internal decision logic
+into a real-world irreversible action.
+
+Protocol Contract  
+The deterministic rules governing whether an execution surface is
+permitted or denied.
+
+Protocol Fingerprint  
+A deterministic identifier representing the exact protocol version used
+to evaluate a decision.
+
+Audit Bundle  
+A cryptographically verifiable evidence package containing the protocol
+fingerprint, decision result, and supporting evaluation records.
+
+Verifier  
+An independent tool capable of validating an audit bundle.
+
+OER (Operational Evidence Record)  
+Structured records describing protocol evaluation steps and outcomes.
+
+## Repository Map
+
+trigguard-protocol → canonical protocol specification  
+trigguard-core-reference → reference implementation  
+trigguard-js → SDK surfaces  
+cloud → hosted enforcement layer  
+docs → explanatory documentation  
+site → public discovery layer  
+TrigGuard → monorepo containing demos and tooling
