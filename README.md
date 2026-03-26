@@ -4,6 +4,10 @@
 
 > **TrigGuard Protocol** — deterministic execution governance **contract**, **schemas**, and **conformance tests**.
 
+This repository publishes the canonical TrigGuard protocol specification; protocol authority and development occur in the TrigGuard monorepo.
+
+All SDKs, runtimes, and enforcement layers must conform to this specification.
+
 Public **specification**, **conformance** vectors, and the **[`@trigguard/protocol`](https://www.npmjs.com/package/@trigguard/protocol)** TypeScript package.
 
 | Area | Contents |
@@ -19,11 +23,11 @@ The protocol explicitly defines **guarantees**, **assumptions**, **threat bounda
 
 ## Specification and Reference Alignment
 
-**trigguard-protocol** (this repository) is the **canonical contract**: schemas, normative prose, conformance artifacts, and versioned fingerprints.
+Protocol governance authority originates in the **TrigGuard monorepo**. This repository is the canonical **published protocol specification** surface for external distribution and integration.
 
-[**trigguard-core-reference**](https://github.com/TrigGuard-AI/trigguard-core-reference) demonstrates **expected protocol behavior** for integrators and reviewers; it is guidance, not a substitute for the specification.
+[**trigguard-core-reference**](https://github.com/TrigGuard-AI/trigguard-core-reference) demonstrates expected protocol behavior for integrators and reviewers; it is guidance, not governance authority.
 
-**Runtime and hosted implementations** execute the protocol under deployment-specific constraints; they **conform** to the contract but **do not redefine** it.
+**Runtime and hosted implementations** execute the protocol under deployment-specific constraints; they must conform to this published specification and do not redefine protocol governance.
 
 | Artifact | Role | Authority |
 |----------|------|-----------|
@@ -31,7 +35,7 @@ The protocol explicitly defines **guarantees**, **assumptions**, **threat bounda
 | trigguard-core-reference | Reference behavior | Guidance / conformance aid |
 | Hosted/runtime implementations | Execution of the protocol | Non-normative implementation |
 
-If implementation behavior and the protocol diverge, **the protocol is authoritative**.
+If implementation behavior and the protocol diverge, the published protocol specification is authoritative for conformance, and governance authority remains in the TrigGuard monorepo.
 
 ### Quick start: `@trigguard/protocol` (npm)
 
@@ -123,10 +127,18 @@ Structured records describing protocol evaluation steps and outcomes.
 
 ## Repository Map
 
-trigguard-protocol → canonical protocol specification (this repo; see [Specification and Reference Alignment](#specification-and-reference-alignment) above)  
-trigguard-core-reference → [reference implementation](https://github.com/TrigGuard-AI/trigguard-core-reference) (guidance; protocol remains authoritative)  
-trigguard-js → SDK surfaces  
-cloud → hosted enforcement layer  
-docs → explanatory documentation  
-site → public discovery layer  
-TrigGuard → monorepo containing demos and tooling
+TrigGuard → governance and development authority (monorepo)
+
+trigguard-protocol → canonical published protocol specification (this repository; derived from the TrigGuard monorepo)
+
+trigguard-core-reference → reference verifier and tooling aligned with the protocol specification
+
+trigguard-js → SDK surfaces implementing the protocol
+
+cloud → hosted enforcement layer
+
+docs → explanatory documentation
+
+site → public discovery and distribution layer
+
+TrigGuard → monorepo containing development tooling, demos, CI, and governance
