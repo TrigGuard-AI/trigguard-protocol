@@ -4,6 +4,10 @@
 
 > **TrigGuard Protocol** — deterministic execution governance **contract**, **schemas**, and **conformance tests**.
 
+This repository publishes the canonical TrigGuard protocol specification; protocol authority and development occur in the TrigGuard monorepo.
+
+All SDKs, runtimes, and enforcement layers must conform to this specification.
+
 Public **specification**, **conformance** vectors, and the **[`@trigguard/protocol`](https://www.npmjs.com/package/@trigguard/protocol)** TypeScript package.
 
 | Area | Contents |
