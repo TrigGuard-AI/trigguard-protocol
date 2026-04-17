@@ -35,6 +35,6 @@
     "url": "git+https://github.com/TrigGuard-AI/trigguard-protocol.git"
   },
   "devDependencies": {
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.3"
   }
 }
