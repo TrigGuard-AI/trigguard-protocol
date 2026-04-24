@@ -1,5 +1,7 @@
 # TrigGuard Protocol
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12222/badge)](https://www.bestpractices.dev/projects/12222)
+
 **Protocol • Deterministic Execution Governance for AI Systems**
 
 > **TrigGuard Protocol** — deterministic execution governance **contract**, **schemas**, and **conformance tests**.
